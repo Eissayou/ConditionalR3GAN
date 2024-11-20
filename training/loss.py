@@ -9,12 +9,12 @@
 """Loss functions."""
 
 from torch_utils import training_stats
-from BaselineGAN.Trainer import AdversarialTraining
+from R3GAN.Trainer import AdversarialTraining
 import torch
 
 #----------------------------------------------------------------------------
 
-class BaselineGANLoss:
+class R3GANLoss:
     def __init__(self, G, D, augment_pipe=None):
         self.trainer = AdversarialTraining(G, D)
         if augment_pipe is not None:

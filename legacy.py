@@ -66,6 +66,10 @@ class _LegacyUnpickler(pickle.Unpickler):
     def find_class(self, module, name):
         if module == 'dnnlib.tflib.network' and name == 'Network':
             return _TFNetworkStub
+        if module == 'training.networks_baseline':
+            module = 'training.networks'
+        if module[:12] == 'BaselineGAN.':
+            module = 'R3GAN.' + module[12:]
         return super().find_class(module, name)
 
 #----------------------------------------------------------------------------
