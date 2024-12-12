@@ -8,13 +8,9 @@ Nick Huang, Aaron Gokaslan, Volodymyr Kuleshov, James Tompkin
 
 Abstract: *There is a widely-spread claim that GANs are difficult to train, and GAN architectures in the literature are littered with empirical tricks. We provide evidence against this claim and build a modern GAN baseline in a more principled manner. First, we derive a well-behaved regularized relativistic GAN loss that addresses issues of mode dropping and non-convergence that were previously tackled via a bag of ad-hoc tricks. We analyze our loss mathematically and prove that it admits local convergence guarantees, unlike most existing relativistic losses. Second, this loss allows us to discard all ad-hoc tricks and replace outdated backbones used in common GANs with modern architectures. Using StyleGAN2 as an example, we present a roadmap of simplification and modernization that results in a new minimalist baseline. Despite being simple, our approach surpasses StyleGAN2 on FFHQ, ImageNet, CIFAR, and Stacked MNIST datasets, and compares favorably against state-of-the-art GANs and diffusion models.*
 
+## Getting started
+To reproduce the main results from our paper, run the following commands:
 
-
-
-
-
-
-To reproduce paper results:
 ```
 # CIFAR10
 python train.py --outdir=./training-runs --data=./datasets/cifar10.zip --gpus=8 --batch=512 --mirror=1 --aug=1 --cond=1 --preset=CIFAR10 --tick=1 --snap=200
@@ -31,3 +27,11 @@ python train.py --outdir=./training-runs --data=./datasets/imagenet-32x32.zip --
 # Imagenet 64x64
 python train.py --outdir=./training-runs --data=./datasets/imagenet-64x64.zip --gpus=64 --batch=4096 --mirror=1 --aug=1 --cond=1 --preset=ImageNet-64 --tick=1 --snap=200
 ```
+
+The easiest way to explore different sampling strategies is to modify [`train.py`](./train.py) directly.
+
+## Pre-trained models
+
+We provide pre-trained models for our proposed training configuration (config E) on each dataset:
+
+- [placeholder link](placeholder link)
