@@ -10,7 +10,7 @@ Abstract: *There is a widely-spread claim that GANs are difficult to train, and 
 
 ## Requirements
 
-Our code requires the same packages as the official StyleGAN3 repo. However, we have updated the code so it is compatible with the latest version of required packages (including PyTorch, etc).
+Our code requires the same packages as the official StyleGAN3 repo. However, we have updated the code so it is compatible with the latest version of the required packages (including PyTorch, etc).
 
 ## Getting started
 To reproduce the main results from our paper, run the following commands:
