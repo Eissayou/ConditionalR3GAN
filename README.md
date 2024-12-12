@@ -61,3 +61,7 @@ year={2024},
 url={https://openreview.net/forum?id=OrtN9hPP7V}
 }
 ```
+
+## Acknowledgements
+
+The authors thank Xinjie Jayden Yi for contributing to the proof and Yu Cheng for helpful discussion. For compute, the authors thank Databricks Mosaic Research. Nick Huang was supported by a Brown University Division of Research Seed Award, and James Tompkin was supported by NSF CAREER 2144956. Volodymyr Kuleshov was supported by NSF CAREER 2145577 and NIH MIRA 1R35GM15124301.
