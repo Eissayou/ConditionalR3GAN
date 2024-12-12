@@ -28,10 +28,13 @@ python train.py --outdir=./training-runs --data=./datasets/imagenet-32x32.zip --
 python train.py --outdir=./training-runs --data=./datasets/imagenet-64x64.zip --gpus=64 --batch=4096 --mirror=1 --aug=1 --cond=1 --preset=ImageNet-64 --tick=1 --snap=200
 ```
 
-The easiest way to explore different sampling strategies is to modify [`train.py`](./train.py) directly.
+The easiest way to explore different training settings is to modify [`train.py`](./train.py) directly.
 
 ## Pre-trained models
 
 We provide pre-trained models for our proposed training configuration (config E) on each dataset:
 
 - [placeholder link](placeholder link)
+
+## Preparing datasets
+We use the same dataset format and dataset preprocessing tool as StyleGAN3 and EDM, refer to their repos for more details.
