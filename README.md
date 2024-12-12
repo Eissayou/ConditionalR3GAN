@@ -38,3 +38,13 @@ We provide pre-trained models for our proposed training configuration (config E)
 
 ## Preparing datasets
 We use the same dataset format and dataset preprocessing tool as StyleGAN3 and EDM, refer to their repos for more details.
+
+## Quality metrics
+We support the following metrics:
+
+* `fid50k_full`: Fr&eacute;chet inception distance against the full dataset.
+* `kid50k_full`: Kernel inception distance against the full dataset.
+* `pr50k3_full`: Precision and recall againt the full dataset.
+* `is50k`: Inception score for CIFAR-10.
+
+Refer to the StyleGAN3 code base for more details.
