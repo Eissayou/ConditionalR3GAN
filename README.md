@@ -48,3 +48,16 @@ We support the following metrics:
 * `is50k`: Inception score for CIFAR-10.
 
 Refer to the StyleGAN3 code base for more details.
+
+## Citation
+
+```
+@inproceedings{
+huang2024the,
+title={The {GAN} is dead; long live the {GAN}! A Modern {GAN} Baseline},
+author={Nick Huang and Aaron Gokaslan and Volodymyr Kuleshov and James Tompkin},
+booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
+year={2024},
+url={https://openreview.net/forum?id=OrtN9hPP7V}
+}
+```
