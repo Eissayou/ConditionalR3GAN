@@ -38,6 +38,7 @@ We provide pre-trained models for our proposed training configuration (config E)
 - [https://huggingface.co/brownvc/BaselineGAN-FFHQ-64x64/tree/main](https://huggingface.co/brownvc/BaselineGAN-FFHQ-64x64/tree/main)
 - [https://huggingface.co/brownvc/BaselineGAN-FFHQ-256x256/tree/main](https://huggingface.co/brownvc/BaselineGAN-FFHQ-256x256/tree/main)
 - [https://huggingface.co/brownvc/BaselineGAN-ImgNet-64x64-v0/tree/main](https://huggingface.co/brownvc/BaselineGAN-ImgNet-64x64-v0/tree/main)
+- [https://huggingface.co/brownvc/BaselineGAN-ImgNet-32x32/tree/main](https://huggingface.co/brownvc/BaselineGAN-ImgNet-32x32/tree/main)
 
 ## Preparing datasets
 We use the same dataset format and dataset preprocessing tool as StyleGAN3 and EDM, refer to their repos for more details.
