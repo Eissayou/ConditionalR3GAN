@@ -34,7 +34,7 @@ The easiest way to explore different training settings is to modify [`train.py`]
 
 We provide pre-trained models for our proposed training configuration (config E) on each dataset:
 
-- [placeholder link](placeholder link)
+- [https://huggingface.co/brownvc/BaselineGAN-CIFAR10/tree/main](https://huggingface.co/brownvc/BaselineGAN-CIFAR10/tree/main)
 
 ## Preparing datasets
 We use the same dataset format and dataset preprocessing tool as StyleGAN3 and EDM, refer to their repos for more details.
