@@ -13,6 +13,16 @@ Abstract: *There is a widely-spread claim that GANs are difficult to train, and 
 Our code requires the same packages as the official StyleGAN3 repo. However, we have updated the code so it is compatible with the latest version of the required packages (including PyTorch, etc).
 
 ## Getting started
+To generate images using a given model, run:
+
+```
+# Generate 8 images using pre-trained FFHQ 256x256 model
+gen_images.py --seeds=0-7 --outdir=out --network=ffhq-256x256.pkl
+
+# Generate 64 airplane images using pre-trained CIFAR10 model
+gen_images.py --seeds=0-63 --outdir=out --class=0 --network=cifar10.pkl
+```
+
 To reproduce the main results from our paper, run the following commands:
 
 ```
