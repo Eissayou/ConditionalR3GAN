@@ -3,7 +3,7 @@
 ![Teaser image](./doc/teaser.png)
 
 **The GAN is dead; long live the GAN! A Modern Baseline GAN**<br>
-Nick Huang, [https://skylion007.github.io/](Aaron Gokaslan), [https://www.cs.cornell.edu/~kuleshov/](Volodymyr Kuleshov), [https://www.jamestompkin.com](James Tompkin)
+Nick Huang, [Aaron Gokaslan](https://skylion007.github.io/), [Volodymyr Kuleshov](https://www.cs.cornell.edu/~kuleshov/), [James Tompkin](https://www.jamestompkin.com)
 <br>https://openreview.net/forum?id=OrtN9hPP7V
 <br>https://arxiv.org/abs/2501.05441
 <br>
