@@ -7,3 +7,7 @@ I had to gitignore the pickle since it was so big. So download it from here: htt
 Then run this: python gen_images.py --seeds=0-7 --outdir=out --network=network-snapshot-final.pkl
 
 There should be images that are generated in the out folder.
+
+
+This is the training thing for conditional:
+python train.py --outdir=training-runs --data=pcam_dataset.zip --gpus=1 --batch=32 --preset=CIFAR10 --cond=True
