@@ -16,8 +16,6 @@ glfw
 pyopengl
 imageio-ffmpeg
 pyspng
-<<<<<<< HEAD
 click
 h5py
 psutil
-=======
