@@ -89,10 +89,17 @@ class DiscriminativeBasis(nn.Module):
         super(DiscriminativeBasis, self).__init__()
         
         self.Basis = MSRInitializer(nn.Conv2d(InputChannels, InputChannels, kernel_size=4, stride=1, padding=0, groups=InputChannels, bias=False))
+        self.global_pool = nn.AdaptiveAvgPool2d((1,1))
         self.LinearLayer = MSRInitializer(nn.Linear(InputChannels, OutputDimension, bias=False))
         
     def forward(self, x):
-        return self.LinearLayer(self.Basis(x).view(x.shape[0], -1))
+        # return self.LinearLayer(self.Basis(x).view(x.shape[0], -1))
+
+        x = self.Basis(x)                # [B,C,H,W]
+        x = self.global_pool(x)          # [B,C,1,1]
+        x = x.view(x.shape[0], -1)       # [B,C]
+        return self.LinearLayer(x)       # [B,D]
+
     
 class GeneratorStage(nn.Module):
     def __init__(self, InputChannels, OutputChannels, Cardinality, NumberOfBlocks, ExpansionFactor, KernelSize, VarianceScalingParameter, ResamplingFilter=None, DataType=torch.float32):
