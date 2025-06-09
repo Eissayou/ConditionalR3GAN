@@ -265,7 +265,7 @@ def training_loop(
         grid_z = torch.randn([labels.shape[0], G.z_dim], device=device).split(g_batch_gpu)
         grid_c = torch.from_numpy(labels).to(device).split(g_batch_gpu)
         images = torch.cat([G_ema(z, c).cpu() for z, c in zip(grid_z, grid_c)]).to(torch.float).numpy()
-        if 'fid50k_full' in metrics:
+        if any(m in metrics for m in ['fid50k_full', 'fid900_full']):
             save_image_folder(images, labels, os.path.join(run_dir, 'fakes_init'), drange=[-1,1])
         else:
             save_image_grid(images, os.path.join(run_dir, 'fakes_init.png'), drange=[-1,1], grid_size=grid_size)
@@ -420,7 +420,7 @@ def training_loop(
         # Save image snapshot.
         if (rank == 0) and (image_snapshot_ticks is not None) and (done or cur_tick % image_snapshot_ticks == 0):
             images = torch.cat([G_ema(z, c).cpu() for z, c in zip(grid_z, grid_c)]).to(torch.float).numpy()
-            if 'fid50k_full' in metrics:
+            if any(m in metrics for m in ['fid50k_full', 'fid900_full']):
                 labels_np = np.concatenate([c.cpu().numpy() for c in grid_c], axis=0)
                 save_image_folder(images, labels_np, os.path.join(run_dir, f'fakes{cur_nimg//1000:09d}'), drange=[-1,1])
             else:
