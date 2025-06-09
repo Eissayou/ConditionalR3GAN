@@ -98,6 +98,33 @@ def save_image_grid(img, fname, drange, grid_size):
 
 #----------------------------------------------------------------------------
 
+def save_image_folder(img, labels, dirname, drange):
+    lo, hi = drange
+    img = np.asarray(img, dtype=np.float32)
+    img = (img - lo) * (255 / (hi - lo))
+    img = np.rint(img).clip(0, 255).astype(np.uint8)
+
+    os.makedirs(dirname, exist_ok=True)
+    N, C, H, W = img.shape
+    img = img.transpose(0, 2, 3, 1)  # NCHW -> NHWC
+    labels = np.asarray(labels)
+
+    dataset_json = {"labels": []}
+    for idx in range(N):
+        im = img[idx]
+        label_idx = int(labels[idx].argmax() if labels.ndim > 1 else labels[idx])
+        fname = f"{idx:05d}_c{label_idx}.png"
+        if C == 1:
+            PIL.Image.fromarray(im[:, :, 0], 'L').save(os.path.join(dirname, fname))
+        else:
+            PIL.Image.fromarray(im, 'RGB').save(os.path.join(dirname, fname))
+        dataset_json["labels"].append([fname, int(label_idx)])
+
+    with open(os.path.join(dirname, 'dataset.json'), 'w') as f:
+        json.dump(dataset_json, f)
+
+#----------------------------------------------------------------------------
+
 def remap_optimizer_state_dict(state_dict, device):
     state_dict = copy.deepcopy(state_dict)
     for param in state_dict['state'].values():
@@ -244,7 +271,10 @@ def training_loop(
         grid_z = torch.randn([labels.shape[0], G.z_dim], device=device).split(g_batch_gpu)
         grid_c = torch.from_numpy(labels).to(device).split(g_batch_gpu)
         images = torch.cat([G_ema(z, c).cpu() for z, c in zip(grid_z, grid_c)]).to(torch.float).numpy()
-        save_image_grid(images, os.path.join(run_dir, 'fakes_init.png'), drange=[-1,1], grid_size=grid_size)
+        if any(m in metrics for m in ['fid50k_full', 'fid900_full']):
+            save_image_folder(images, labels, os.path.join(run_dir, 'fakes_init'), drange=[-1,1])
+        else:
+            save_image_grid(images, os.path.join(run_dir, 'fakes_init.png'), drange=[-1,1], grid_size=grid_size)
 
     # Initialize logs.
     if rank == 0:
@@ -396,7 +426,11 @@ def training_loop(
         # Save image snapshot.
         if (rank == 0) and (image_snapshot_ticks is not None) and (done or cur_tick % image_snapshot_ticks == 0):
             images = torch.cat([G_ema(z, c).cpu() for z, c in zip(grid_z, grid_c)]).to(torch.float).numpy()
-            save_image_grid(images, os.path.join(run_dir, f'fakes{cur_nimg//1000:09d}.png'), drange=[-1,1], grid_size=grid_size)
+            if any(m in metrics for m in ['fid50k_full', 'fid900_full']):
+                labels_np = np.concatenate([c.cpu().numpy() for c in grid_c], axis=0)
+                save_image_folder(images, labels_np, os.path.join(run_dir, f'fakes{cur_nimg//1000:09d}'), drange=[-1,1])
+            else:
+                save_image_grid(images, os.path.join(run_dir, f'fakes{cur_nimg//1000:09d}.png'), drange=[-1,1], grid_size=grid_size)
 
         # Save network snapshot.
         snapshot_pkl = None
